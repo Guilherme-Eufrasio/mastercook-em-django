@@ -1,0 +1,31 @@
+@media only screen and (max-width:576px){
+    body{
+        background-color: blue;
+    }
+}
+
+
+@media (min-width: 576px) {
+    body{
+        background-color: blue;
+    }
+}
+body{
+    background: linear-gradient(to right, #FAFF9F, #E1BA63);
+}
+img{
+    width: 72px;
+    height: 88px;
+    display: flex;
+    margin-top: 24px;
+}
+a{
+    display: flex;
+    justify-content: center;
+}
+h1{
+    color: #002462;
+    text-align: center;
+}
+
+
