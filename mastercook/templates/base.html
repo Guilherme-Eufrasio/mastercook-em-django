@@ -11,7 +11,32 @@
     <title>{% block 'title'%} {% endblock %}</title>
 </head>
 <body>
-    <a href=""><img src="../static/img/logo-site.png" alt="logo principal do site"></a>
+    <nav class="menu-container">
+        <ul class="menu">
+                <li><a href="#"><img src="../../static/img/logo-site.png" alt="Logo Principal do Site - Master Cook"></a></li>
+                <li>
+                    <a class="menu_populares" href="#" onclick="abrirSubMenu('menu_populares')">MAIS POPULARES <span class="seta"></span></a>
+                    <ul class="submenu">
+                        <li><a href="pages/maispopu.html">TODOS</a></li>
+                        <li><a href="pages/simples.html">SIMPLES</a></li>
+                    </ul>
+                </li>
+    
+                <li>
+                    <a class="menu_receitas" href="#" onclick="abrirSubMenu('menu_receitas')">RECEITAS<span class="seta"></span></a>
+                    <ul class="submenu ">
+                        <li><a href="pages/doces.html">DOCES</a></li>
+                        <li><a href="pages/salgados.html">SALGADOS</a></li>
+                    </ul>
+                </li>
+                <li><a href="pages/cadastro.html">CADRASTRO</a></li>
+                <li><a href="pages/login.html">LOGIN</a></li>
+                <li><a href="pages/sobre.html">SOBRE</a></li>
+        </ul>
+    </nav>
+
+    <script src="../static/js/submenu.js"></script>
+    
     {% block 'conteudo'%} {% endblock %}
 </body>
 </html>

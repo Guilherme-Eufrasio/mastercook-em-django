@@ -33,7 +33,7 @@
             <tbody>
                 {% for pessoa in pessoas %}
                     <tr>
-                        <td><a >{{ pessoa.nome }}</a></td>
+                        <td><a href="{% url 'detalhe_pessoa' pessoa.id %}">{{ pessoa.nome }}</a></td>
                         <td>{{ pessoa.email }}</td>
                     </tr>
                 {% endfor %}
