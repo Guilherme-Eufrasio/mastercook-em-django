@@ -12,3 +12,18 @@ def lista_pessoa(request):
 def detalhe_pessoa(request, id):
     pessoa = get_object_or_404(Pessoa, id=id)
     return render(request, 'pessoa_detalhe.html', {'pessoa': pessoa})
+
+def logar(request):
+    return render(request, 'login.html')
+
+def cadastrar(request):
+    return render(request, 'cadastro.html')
+
+def popular(request):
+    return render(request, 'maispopu.html')
+
+def simples(request):
+    return render(request, 'popusimples.html')
+
+def salgados(request):
+    return render(request, 'salgado.html')

@@ -1,18 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
 {% block 'head' %} {% endblock %}
 
 {% block 'conteudo'%} 
 
 <h1 class="fav">RECOMENDAMOS PARA VOCÊ!</h1>
-<link rel="stylesheet" href="../../static/css/indexcustom.css">
+<link rel="stylesheet" href="{% static 'css/indexcustom.css' %}">
     <section class="pratos-destaques">
         <div style="order: 1">
             <p style="order: 1">STROGONOFF DE<br> FRANGO</p>
-            <img  style="order: 2" class="populares" src="../../static/img/strogonoff.jpeg" alt="strogonoff">
+            <img  style="order: 2" class="populares" src="{% static 'img/strogonoff.jpeg' %}" alt="strogonoff">
         </div>
         <div style="order: 2">
             <p style="order: 1">PARMEGIANA DE<br> FRANGO</p>
-            <img style ="order: 1" class="populares" src="../../static/img/parmegiana.avif" alt="parmegiana">
+            <img style ="order: 1" class="populares" src="{% static 'img/parmegiana.avif' %}" alt="parmegiana">
         </div>
     </section>
 {% endblock %}

@@ -1,13 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 {% block 'head' %} {% endblock %}
 
 {% block 'conteudo'%} 
+<link rel="stylesheet" href="{% static 'css/paglogin.css' %}">
 <body class="text-center">
     
     
     <main class="form-signin">
       <form name="formLogin" id="formLogin" class="formLogin" onsubmit="event.preventDefault();">    
-        <a href="../index.html"><img class="mb-4" src="../img/logo-site.png" alt="" width="72" height="88"></a>
+        <a href="{% url 'home'%}"><img class="mb-4" src="{% static 'img/logo-site.png' %}" alt="" width="72" height="88"></a>
         <h1 class="h3 mb-3 fw-normal">Login</h1>
     
         <div class="form-floating">
@@ -23,7 +25,7 @@
         <button class="bota w-100 btn btn-lg btn-primary" onclick="fazerLogin();" >Entrar</button>
       </form>
     
-      <p class="mt-5 mb-3 text-muted">Caso seja novo por aqui tente se <a href="cadastro.html">Cadastrar</a></p>
+      <p class="mt-5 mb-3 text-muted">Caso seja novo por aqui tente se <a href="{% url 'cadastro' %}">Cadastrar</a></p>
       <p class="mt-5 mb-3 text-muted">&copy;2025</p>
     
     </main>

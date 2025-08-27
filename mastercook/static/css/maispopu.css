@@ -1,0 +1,13 @@
+@font-face {
+    font-family: chalet;
+    src: url(../fontes/ChaletComprime/ChaletComprime\ CologneSixty.ttf);
+}
+.titulos_segundaspaginas {
+    font-family: chalet;
+    text-align: center;
+    color: #002462;
+    letter-spacing: 0px;
+    font-size: 39px;
+    background-color: #ffae00;
+    font-weight: bold;
+}

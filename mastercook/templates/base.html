@@ -13,12 +13,12 @@
 <body>
     <nav class="menu-container">
         <ul class="menu">
-                <li><a href="#"><img src="../../static/img/logo-site.png" alt="Logo Principal do Site - Master Cook"></a></li>
+                <li><a href="#"><img src="{% static 'img/logo-site.png' %}" alt="Logo Principal do Site - Master Cook"></a></li>
                 <li>
                     <a class="menu_populares" href="#" onclick="abrirSubMenu('menu_populares')">MAIS POPULARES <span class="seta"></span></a>
                     <ul class="submenu">
-                        <li><a href="#">TODOS</a></li>
-                        <li><a href="#">SIMPLES</a></li>
+                        <li><a href="{% url 'maispopu' %}">TODOS</a></li>
+                        <li><a href="{% url 'popusimples' %}">SIMPLES</a></li>
                     </ul>
                 </li>
     
@@ -26,11 +26,11 @@
                     <a class="menu_receitas" href="#" onclick="abrirSubMenu('menu_receitas')">RECEITAS<span class="seta"></span></a>
                     <ul class="submenu ">
                         <li><a href="#">DOCES</a></li>
-                        <li><a href="#">SALGADOS</a></li>
+                        <li><a href="{% url 'salgado' %}">SALGADOS</a></li>
                     </ul>
                 </li>
-                <li><a href="#">CADRASTRO</a></li>
-                <li><a href="../website/templates/login.html">LOGIN</a></li>
+                <li><a href="{% url 'cadastro' %}">CADRASTRO</a></li>
+                <li><a href="{% url 'login' %}">LOGIN</a></li>
                 <li><a href="#">SOBRE</a></li>
         </ul>
     </nav>
