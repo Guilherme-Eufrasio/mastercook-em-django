@@ -1,0 +1,39 @@
+.pratos-destaques {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: #002462;
+    font-family: chalet1;
+    letter-spacing: 0px;
+    font-size: 35px;
+    overflow: hidden;
+}
+.pratos-destaques div {
+    display: flex;
+    align-items: center;
+    
+}
+.pratos-destaques div p{
+    margin:15px;
+}
+.pratos-destaques .populares{
+    width: 500px;
+    height: 350px;
+    border-radius: 33px;
+    margin: 15px;
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: 0.5s;
+    margin-top: 90px;
+}
+
+.pratos-destaques .populares:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.fav{
+    text-align: center;
+    color: #002462;
+    font-family: chalet;
+    letter-spacing: 0px;
+    font-size: 35px;
+}

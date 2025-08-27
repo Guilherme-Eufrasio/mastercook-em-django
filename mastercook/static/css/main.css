@@ -1,14 +1,6 @@
-@media only screen and (max-width:576px){
-    body{
-        background-color: blue;
-    }
-}
-
-
-@media (min-width: 576px) {
-    body{
-        background-color: blue;
-    }
+@font-face {
+    font-family: chalet;
+    src: url(../fontes/ChaletComprime\ CologneSixty.ttf);
 }
 .menu-container{
     background:linear-gradient(to right,#4069F8,#002462) ;
@@ -17,7 +9,7 @@
     justify-content: center;
     align-items: center;
     padding: 0 10px;
-    font-family: chalet1;
+    font-family: chalet;
 }
 
 .menu-container ul.menu{
@@ -50,7 +42,7 @@
     padding-right: 20px;
 }
 .menu-container ul.menu li img{ 
-    width: 75px;
+    width: 65px;
 }
 
 .menu-container .submenu{
@@ -99,31 +91,66 @@
 }
 body{
     background: linear-gradient(to right, #FAFF9F, #E1BA63);
+    margin: 0%;
 }
-img{
-    width: 72px;
-    height: 88px;
-    display: flex;
-    margin-top: 24px;
-}
-a{
+
+/* a{
     display: flex;
     justify-content: center;
-}
+} */
 h1{
     color: #002462;
     text-align: center;
+    font-family: chalet;
+    letter-spacing: 0px;
+    font-size: 35px;
 }
-@media only screen and (max-width:576px){
-    body{
-        background-color: blue;
+p{
+    font-family: chalet;
+}
+#menu-mobile{
+    background:linear-gradient(to right, #4069F8,#002462) ;
+}
+#icone {
+    background-color: #3256a7;
+}
+#closeMenuBtn{
+    background-color: rgb(255, 22, 22);
+}
+#navbarCollapse{
+    background: linear-gradient(to right, #4068f896,#002462b7);
+}
+@media only screen and (max-width:580px){
+    .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+      }
+      body img{
+        margin: 0%;
+    }
+    .menu-container ul.menu{
+        display: none;
+    }
+    .pratos-destaques div {
+        display: grid;
+        align-items: center;
+    }
+    .pratos-destaques {
+        display: grid;
+    }
+    .pratos-destaques div p {
+        margin: 15px;
+        text-align: center;
     }
 }
-
-
 @media (min-width: 576px) {
-    body{
-        background-color: blue;
-    }
+    #menu-mobile{
+        display: none;
+    }    
 }
-
