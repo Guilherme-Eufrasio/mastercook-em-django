@@ -27,3 +27,9 @@ def simples(request):
 
 def salgados(request):
     return render(request, 'salgado.html')
+
+def doces(request):
+    return render(request, 'doces.html')
+
+def criadores(request):
+    return render(request, 'sobre.html')

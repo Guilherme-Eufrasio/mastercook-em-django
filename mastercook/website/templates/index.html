@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-{% block 'head' %} {% endblock %}
+{% block 'title'%} Página Principal	 {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/indexcustom.css' %}">
+{% endblock %}
 
 {% block 'conteudo'%} 
-
 <h1 class="fav">RECOMENDAMOS PARA VOCÊ!</h1>
-<link rel="stylesheet" href="{% static 'css/indexcustom.css' %}">
     <section class="pratos-destaques">
         <div style="order: 1">
             <p style="order: 1">STROGONOFF DE<br> FRANGO</p>

@@ -25,7 +25,7 @@
                 <li>
                     <a class="menu_receitas" href="#" onclick="abrirSubMenu('menu_receitas')">RECEITAS<span class="seta"></span></a>
                     <ul class="submenu ">
-                        <li><a href="#">DOCES</a></li>
+                        <li><a href="{% url 'doces' %}">DOCES</a></li>
                         <li><a href="{% url 'salgado' %}">SALGADOS</a></li>
                     </ul>
                 </li>
@@ -37,52 +37,6 @@
 
 
     <!-- MENU MOBILE ABAIXO: -->
-     
-    <style>
-        .fullscreen-menu.collapse.show {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(33, 37, 41, 0.95); /* quase preto com transparência */
-            z-index: 1050; /* maior que navbar padrão */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-      
-        .fullscreen-menu .navbar-nav {
-            flex-direction: column;
-            align-items: center;
-        }
-      
-        .fullscreen-menu .nav-link {
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            color: #fff !important;
-        }
-      
-        .fullscreen-menu .dropdown-menu {
-            position: static;
-            float: none;
-            background-color: transparent;
-            border: none;
-            box-shadow: none;
-        }
-      
-        .fullscreen-menu .dropdown-item {
-            color: #fff;
-            text-align: center;
-        }
-      
-        .fullscreen-menu .navbar-brand,
-        .fullscreen-menu .navbar-toggler {
-            display: none;
-        }
-        
-      </style> 
 
 
 
@@ -106,10 +60,10 @@
 
    
 
-     <nav class="navbar fixed-bottom navbar-expand-sm" id="menu-mobile">
+    <nav class="navbar fixed-bottom navbar-expand-sm" id="menu-mobile">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="../static/img/logo-site.png" alt="Logo Principal do Site - Master Cook" width="50px">
+                <img src="{% static 'img/logo-site.png'%}" alt="Logo Principal do Site - Master Cook" width="50px">
             </a> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" id="icone"> <span class="navbar-toggler-icon" ></span> </button> 
             <div class="collapse navbar-collapse fullscreen-menu" id="navbarCollapse">
@@ -119,30 +73,29 @@
                     <li class="nav-item dropup">
                         <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mais Populares</a> 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">TODOS</a></li>
-                            <li><a class="dropdown-item" href="#">SIMPLES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'maispopu' %}">TODOS</a></li>
+                            <li><a class="dropdown-item" href="{% url 'popusimples' %}">SIMPLES</a></li>
                         </ul>
                     </li>        
                     <li class="nav-item dropup">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Receitas</a> 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">SALGADOS</a></li>
-                            <li><a class="dropdown-item" href="#">DOCES</a></li>
+                            <li><a class="dropdown-item" href="{% url 'salgado' %}">SALGADOS</a></li>
+                            <li><a class="dropdown-item" href="{% url 'doces' %}">DOCES</a></li>
                         </ul>
                     </li>                                          
-                    <li class="nav-item"> <a class="nav-link " href="#">Cadastro</a> </li>
-                    <li class="nav-item"> <a class="nav-link " href="#">Login</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Sobre</a> </li>
+                    <li class="nav-item"> <a class="nav-link " href="{% url 'cadastro' %}">Cadastro</a> </li>
+                    <li class="nav-item"> <a class="nav-link " href="{% url 'login' %}">Login</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="{% url 'sobre' %}">Sobre</a> </li>
 
                 </ul>
             </div>
         </div>
     </nav>
-
-
+    {% block 'conteudo'%} {% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-    <script src="../static/js/submenu.js"></script>
+    <script src="{% static 'js/submenu.js' %}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const navLinks = document.querySelectorAll('#navbarCollapse .nav-link, #navbarCollapse .dropdown-item');
@@ -173,6 +126,5 @@
       
     </script> 
     
-    {% block 'conteudo'%} {% endblock %}
 </body>
 </html>

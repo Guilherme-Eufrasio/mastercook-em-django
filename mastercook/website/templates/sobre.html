@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title'%} Sobre {% endblock %}
+{% block 'head' %}
+{% endblock %}
+
+{% block 'conteudo'%}
+<h1 class="sobre">SOBRE O PROJETO</h1>
+
+    <p class="projeto">Esse projeto é do nosso curso. Onde consiste em fazer um site de receitas onde o usuário pode postar as próprias receitas.</p>
+    <h2 class="texto">CRIADORES:</h2>
+    <div class="criadores">
+        <a href="https://github.com/Guilherme-Eufrasio"><img src="{% static 'img/guizao.jpeg' %}" alt="foto criador guizão"></a>
+        <a href="https://github.com/nicolas2349"><img src="{% static 'img/nicao.jpeg' %}" alt="foto criador nicolas"></a>
+    </div>
+
+{% endblock %}

@@ -121,7 +121,7 @@ p{
 #navbarCollapse{
     background: linear-gradient(to right, #4068f896,#002462b7);
 }
-@media only screen and (max-width:580px){
+@media only screen and (max-width:576px){
     .menu {
         display: none;
         flex-direction: column;
@@ -154,4 +154,48 @@ p{
     #menu-mobile{
         display: none;
     }    
+}
+
+
+.fullscreen-menu.collapse.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(33, 37, 41, 0.95); /* quase preto com transparência */
+    z-index: 1050; /* maior que navbar padrão */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.fullscreen-menu .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+}
+
+.fullscreen-menu .nav-link {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    color: #fff !important;
+}
+
+.fullscreen-menu .dropdown-menu {
+    position: static;
+    float: none;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.fullscreen-menu .dropdown-item {
+    color: #fff;
+    text-align: center;
+}
+
+.fullscreen-menu .navbar-brand,
+.fullscreen-menu .navbar-toggler {
+    display: none;
 }

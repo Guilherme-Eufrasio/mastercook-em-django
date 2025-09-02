@@ -11,4 +11,6 @@ urlpatterns= [
     path('maispopu/', views.popular, name='maispopu'),
     path('popusimples/', views.simples, name='popusimples'),
     path('salgado/', views.salgados, name='salgado'),
+    path('doces/', views.doces, name='doces'),
+    path('sobre/', views.criadores, name='sobre'),
 ]
