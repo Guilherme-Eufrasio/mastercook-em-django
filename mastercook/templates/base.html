@@ -13,7 +13,7 @@
 <body>
     <nav class="menu-container">
         <ul class="menu">
-                <li><a href="#"><img src="{% static 'img/logo-site.png' %}" alt="Logo Principal do Site - Master Cook"></a></li>
+                <li><a href="{% url 'home' %}"><img src="{% static 'img/logo-site.png' %}" alt="Logo Principal do Site - Master Cook"></a></li>
                 <li>
                     <a class="menu_populares" href="#" onclick="abrirSubMenu('menu_populares')">MAIS POPULARES <span class="seta"></span></a>
                     <ul class="submenu">
@@ -31,7 +31,7 @@
                 </li>
                 <li><a href="{% url 'cadastro' %}">CADRASTRO</a></li>
                 <li><a href="{% url 'login' %}">LOGIN</a></li>
-                <li><a href="#">SOBRE</a></li>
+                <li><a href="{% url 'sobre' %}">SOBRE</a></li>
         </ul>
     </nav>
 
@@ -62,7 +62,7 @@
 
     <nav class="navbar fixed-bottom navbar-expand-sm" id="menu-mobile">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'img/logo-site.png'%}" alt="Logo Principal do Site - Master Cook" width="50px">
             </a> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" id="icone"> <span class="navbar-toggler-icon" ></span> </button> 
@@ -114,7 +114,7 @@
         document.addEventListener("DOMContentLoaded", async () => {
             if (!localStorage.getItem("receitas")) {
                 try {
-                    const responseReceitas = await fetch("dados/receitas.json");
+                    const responseReceitas = await fetch("{% static 'dados/receitas.json'%}");
                     const dadosIniciaisReceitas = await responseReceitas.json();
                     localStorage.setItem("receitas", JSON.stringify(dadosIniciaisReceitas));
                 } catch (erro) {

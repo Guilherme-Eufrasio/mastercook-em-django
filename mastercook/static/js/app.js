@@ -6,7 +6,7 @@ if (localStorage.getItem("jsonCarregado")!='true'){
 
 async function carregarDadosIniciais() {
     if (!localStorage.getItem("usuarios")) {
-      const response = await fetch("dados/usuarios.json");
+      const response = await fetch("../static/dados/usuarios.json");      
       const dadosIniciais = await response.json();
       localStorage.setItem("jsonCarregado", 'true');    
       localStorage.setItem("usuarios", JSON.stringify(dadosIniciais));
