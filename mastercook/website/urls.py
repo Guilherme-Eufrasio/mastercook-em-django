@@ -13,4 +13,5 @@ urlpatterns= [
     path('salgado/', views.salgados, name='salgado'),
     path('doces/', views.doces, name='doces'),
     path('sobre/', views.criadores, name='sobre'),
+    path('homeUsuario/', views.homeUser, name='homeUsuario'),
 ]

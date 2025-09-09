@@ -199,3 +199,80 @@ p{
 .fullscreen-menu .navbar-toggler {
     display: none;
 }
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
+  
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .bota{
+    background:linear-gradient(to right,#4069F8,#002462) ;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+  
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  .form-signin input[type="password"] {
+    margin-bottom: 0px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .titulos_segundaspaginas {
+    font-family: chalet;
+    text-align: center;
+    color: #002462;
+    letter-spacing: 0px;
+    font-size: 39px;
+    background-color: #ffae00;
+    font-weight: bold;
+}
+.pratos-destaques {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: #002462;
+    font-family: chalet1;
+    letter-spacing: 0px;
+    font-size: 35px;
+    overflow: hidden;
+}
+.pratos-destaques div {
+    display: flex;
+    align-items: center;
+    
+}
+.pratos-destaques div p{
+    margin:15px;
+}
+.pratos-destaques .populares{
+    width: 500px;
+    height: 350px;
+    border-radius: 33px;
+    margin: 15px;
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: 0.5s;
+    margin-top: 90px;
+}
+
+.pratos-destaques .populares:hover{
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+.fav{
+    text-align: center;
+    color: #002462;
+    font-family: chalet;
+    letter-spacing: 0px;
+    font-size: 35px;
+}

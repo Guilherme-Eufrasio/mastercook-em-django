@@ -33,3 +33,6 @@ def doces(request):
 
 def criadores(request):
     return render(request, 'sobre.html')
+
+def homeUser(request):
+    return render(request, 'homeUsuario.html')
