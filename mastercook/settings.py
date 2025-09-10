@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mastercook.website.apps.WebsiteConfig'
+    'mastercook.website.apps.WebsiteConfig',
+    'mastercook.usuarios.apps.UsuariosConfig'
 ]
+
+AUTH_USER_MODEL = 'usuarios.Usuario'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

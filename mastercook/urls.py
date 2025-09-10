@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mastercook.website.urls')),
+    path('usuarios/', include('mastercook.usuarios.urls')),
 ]
 
 
