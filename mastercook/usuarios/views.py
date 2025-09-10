@@ -64,7 +64,7 @@ def login_usuario(request):
         else:
             erro = "Usuário ou senha inválidos."
 
-    return render(request, "login.html", {"erro": erro})
+    return render(request, "logon.html", {"erro": erro})
 
 
 def logout_usuario(request):
@@ -76,4 +76,4 @@ def logout_usuario(request):
 def area_restrita(request):
     return render(request, "area_restrita.html")
 def home(request):
-    return render(request, 'login.html')
+    return render(request, 'logon.html')
