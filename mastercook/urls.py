@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mastercook.website.urls')),
     path('usuarios/', include('mastercook.usuarios.urls')),
+    path('area_administrativa/', include('mastercook.area_administrativa.urls')),
 ]
 
 

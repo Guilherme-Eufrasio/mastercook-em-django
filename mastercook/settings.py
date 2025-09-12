@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mastercook.website.apps.WebsiteConfig',
-    'mastercook.usuarios.apps.UsuariosConfig'
+    'mastercook.usuarios.apps.UsuariosConfig',
+    'mastercook.area_administrativa.apps.AreaAdministrativaConfig',
 ]
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
