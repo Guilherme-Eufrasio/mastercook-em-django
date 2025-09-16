@@ -14,11 +14,11 @@
         {% csrf_token %}
         <a href="{% url 'home'%}"><img class="mb-4" src="{% static 'img/logo-site.png' %}" alt="" width="72" height="88"></a>
         <div class="form-floating">
-          <input type="email" class="form-control" id="usuarioEmail" placeholder="name@example.com">
+          <input type="email" class="form-control" id="usuarioEmail" name="usuarioEmail" placeholder="name@example.com">
           <label for="usuarioEmail">Email</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="usuarioSenha" placeholder="Password">
+          <input type="password" class="form-control" id="usuarioSenha" name="usuarioSenha" placeholder="Password">
           <label for="usuarioSenha">Senha</label>
         </div>
         <div class="checkbox mb-3">

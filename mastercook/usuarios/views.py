@@ -14,35 +14,32 @@ Usuario = get_user_model()
 
 def registrar_usuario(request):
     erro = None
+    print(request.POST.get("inputNome"))
     if request.method == "POST":
-        apelido = request.POST.get("apelido")
-        username = request.POST.get("username")
-        email = request.POST.get("email")
-        password1 = request.POST.get("password1")
-        password2 = request.POST.get("password2")
-        avatar = request.FILES.get("avatar")  # pega o arquivo
-        bio = request.POST.get("bio")
+        nome = request.POST.get("inputNome")
+        # username = request.POST.get("username")
+        email = request.POST.get("inputEmail")
+        password1 = request.POST.get("inputSenha")
+        password2 = request.POST.get("inputRepitaSenha")
+        # avatar = request.FILES.get("avatar")  # pega o arquivo
+        # bio = request.POST.get("bio")
 
         # 🔹 validações manuais
-        if not username or not email or not password1:
+        if not email or not password1:
             erro = "Preencha todos os campos."
         elif password1 != password2:
             erro = "As senhas não conferem."
-        elif Usuario.objects.filter(username=username).exists():
+        elif Usuario.objects.filter(email=email).exists():
             erro = "Esse nome de usuário já existe."
         else:
             # 🔹 cria o usuário
             user = Usuario.objects.create_user(
-                username=username,
+                apelido=nome,
                 email=email,
                 password=make_password(password1),
-                #password=password1,
-                bio=bio,
-            )
+             )
 
-            if avatar:
-                user.avatar = avatar
-            
+       
             user.save()
 
             login(request, user)
@@ -54,8 +51,8 @@ def registrar_usuario(request):
 def login_usuario(request):
     erro = None
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username = request.POST.get("usuarioEmail")
+        password = request.POST.get("usuarioSenha")
 
         user = authenticate(request, username=username, password=password)
         if user is not None:

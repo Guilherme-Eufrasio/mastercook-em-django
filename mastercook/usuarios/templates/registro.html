@@ -14,19 +14,19 @@
             {% csrf_token %}
             <h1 class="h3 mb-3 fw-normal">Cadastro</h1>
             <div class="form-floating">
-                <input type="text" id="inputNome" class="form-control" placeholder="name" />
+                <input type="text" id="inputNome"  name="inputNome" class="form-control" placeholder="name" />
                 <label for="inputNome">Nome de Usuário</label>
             </div>
             <div class="form-floating">
-                <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+                <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="name@example.com">
                 <label for="inputEmail">Email</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="inputSenha" placeholder="Password" required>
+                <input type="password" class="form-control" id="inputSenha" name="inputSenha" placeholder="Password" required>
                 <label for="inputSenha">Senha</label>
             </div>
             <div class="form-floating">
-                <input type="password" id="inputRepitaSenha" class="form-control" placeholder="Password" required/>
+                <input type="password" id="inputRepitaSenha" name="inputRepitaSenha" class="form-control" placeholder="Password" required/>
                 <label for="inputRepitaSenha">Repita sua Senha</label>
             </div>
             <br>
