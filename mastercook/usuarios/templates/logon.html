@@ -10,19 +10,18 @@
     
 <body class="text-center">
     <main class="form-signin">
-      <form name="formLogin" id="formLogin" class="formLogin">    
+      <form name="formLogin" id="formLogin" class="formLogin" method="post">    
         {% csrf_token %}
         <a href="{% url 'home'%}"><img class="mb-4" src="{% static 'img/logo-site.png' %}" alt="" width="72" height="88"></a>
-        <div class="form-floating">
-          <input type="email" class="form-control" id="usuarioEmail" name="usuarioEmail" placeholder="name@example.com">
-          <input type="text" class="form-control" id="usuarioUsername" name="usuarioUsername" placeholder="name@example.com">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="usuarioUsername" name="usuarioUsername" placeholder="Digite seu usuário">
+            <label for="usuarioUsername">Usuário</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="usuarioSenha" name="usuarioSenha" placeholder="Senha">
+            <label for="usuarioSenha">Senha</label>
+          </div>
 
-          <label for="usuarioEmail">Email</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" id="usuarioSenha" name="usuarioSenha" placeholder="Password">
-          <label for="usuarioSenha">Senha</label>
-        </div>
         <div class="checkbox mb-3">
         </div>
         <!-- <button class="bota w-100 btn btn-lg btn-primary">Entrar</button> -->
