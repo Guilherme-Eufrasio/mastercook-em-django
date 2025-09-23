@@ -15,6 +15,8 @@
         <a href="{% url 'home'%}"><img class="mb-4" src="{% static 'img/logo-site.png' %}" alt="" width="72" height="88"></a>
         <div class="form-floating">
           <input type="email" class="form-control" id="usuarioEmail" name="usuarioEmail" placeholder="name@example.com">
+          <input type="text" class="form-control" id="usuarioUsername" name="usuarioUsername" placeholder="name@example.com">
+
           <label for="usuarioEmail">Email</label>
         </div>
         <div class="form-floating">
@@ -23,8 +25,10 @@
         </div>
         <div class="checkbox mb-3">
         </div>
-        <button class="bota w-100 btn btn-lg btn-primary">Entrar</button>
+        <!-- <button class="bota w-100 btn btn-lg btn-primary">Entrar</button> -->
+        <input class="bota w-100 btn btn-lg btn-primary" type="submit" value="Entrar">
       </form>
+
     
       <p class="mt-5 mb-3 text-muted">Caso seja novo por aqui tente se <a href="{% url 'registrar' %}">Cadastrar</a></p>
       <p class="mt-5 mb-3 text-muted">&copy;2025</p>

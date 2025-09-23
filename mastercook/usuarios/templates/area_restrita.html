@@ -1,13 +1,14 @@
-<h2>Área Restrita</h2>
-<p>Bem-vindo, {{ user.username }}!</p>
-<p>Email: {{ user.email }}</p>
-<p>Bio: {{ user.bio }}</p>
-<p>Apelido: {{ user.apelido }}</p>
+{% extends "base.html" %}
+{% load static %}
+{% block 'title'%} Página Principal	 {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
 
-{% if user.avatar %}
-    <img src="{{ user.avatar.url }}" alt="Avatar" width="150">
-{% else %}
-    <p>Sem avatar.</p>
-{% endif %}
+{% block 'conteudo'%} 
+    <h2>Área Restrita</h2>
 
-<a href="{% url 'logout' %}">Sair</a>
+
+
+    <a href="{% url 'logout' %}">Sair</a>
+{% endblock %}

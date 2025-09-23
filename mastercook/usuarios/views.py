@@ -51,7 +51,9 @@ def registrar_usuario(request):
 def login_usuario(request):
     erro = None
     if request.method == "POST":
-        username = request.POST.get("usuarioEmail")
+        email = request.POST.get("usuarioEmail")
+        username = request.POST.get("usuarioUsername")
+
         password = request.POST.get("usuarioSenha")
 
         user = authenticate(request, username=username, password=password)
