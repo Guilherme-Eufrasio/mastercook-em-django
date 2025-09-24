@@ -1,1 +1,15 @@
+{% extends "base-logout.html" %}
+{% load static %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+{% block 'title' %}Cadastrar Receita{% endblock %}
+
+{% block 'conteudo' %}
 <h1>Página Cadastrar Receita</h1>
+
+<form name="addreceita">
+    <input type="text" name="nomeReceita" class="nomereceita form-control" placeholder="Nome da Receita">
+    <input type="url" name="imagemReceita" class="image form-control" placeholder="Link da imagem da receita">
+</form>
+{% endblock %}
