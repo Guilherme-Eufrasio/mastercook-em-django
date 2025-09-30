@@ -1,4 +1,4 @@
-{% extends "base-logout.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -6,10 +6,24 @@
 {% block 'title' %}Cadastrar Receita{% endblock %}
 
 {% block 'conteudo' %}
-<h1>Página Cadastrar Receita</h1>
+<h1>Página Adicionar Receita</h1>
 
 <form name="addreceita">
     <input type="text" name="nomeReceita" class="nomereceita form-control" placeholder="Nome da Receita">
     <input type="url" name="imagemReceita" class="image form-control" placeholder="Link da imagem da receita">
+    <textarea name="" id="" class="descricao form-control" cols="30" rows="10" placeholder="Receita"></textarea>
+    <p name="escolha" class="escolha">Popular?</p>
+    <select name="popularesReceita" id="popularesReceita" class="popular form-select" required>
+        <option value="sim">SIM</option>
+        <option value="nao">NÃO</option>
+    </select>
+    <input type="number" name="tempo_preparo" class="tempo_preparo form-control" placeholder="Tempo de Preparo (Minutos)" required>
+
+    <br>
+    <br/>
+    <div class="butao">
+        <button class="add btn btn-success">Adicionar</button>
+
+    </div>
 </form>
 {% endblock %}

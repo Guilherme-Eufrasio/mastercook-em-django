@@ -1,4 +1,4 @@
-{% extends "base-logout.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -6,7 +6,7 @@
 {% block 'title' %}Minhas Receitas{% endblock %}
 
 {% block 'conteudo' %}
-<h2>Bem-vindo, {{ user.username }}!</h2>
+<h2 class="mestre">Bem-vindo, {{ user.username }}!</h2>
 
 <div class="stats">
   <p>Total de receitas: {{ total }}</p>
@@ -16,8 +16,11 @@
 
 <hr>
 
-<h3>Minhas Receitas</h3>
-<a href="{% url 'cadastrar_receita' %}" class="btn btn-success">Cadastrar nova receita</a>
+<h3 class="txt2">Minhas Receitas</h3>
+<div class="cadastrar-receita">
+    <a href="{% url 'cadastrar_receita' %}" class="btn btn-success">Cadastrar nova receita</a>
+</div>
+
 
 <ul>
   {% for r in receitas %}
@@ -29,7 +32,7 @@
       <a href="{% url 'despublicar_receita' r.id %}">Despublicar</a>
     </li>
   {% empty %}
-    <p>Você ainda não cadastrou receitas.</p>
+    <p class="txt1">Você ainda não cadastrou receitas.</p>
   {% endfor %}
 </ul>
 {% endblock %}

@@ -29,8 +29,14 @@
                         <li><a href="{% url 'salgado' %}">SALGADOS</a></li>
                     </ul>
                 </li>
-                <li><a href="{% url 'registrar' %}">CADRASTRO</a></li>
-                <li><a href="{% url 'login' %}">LOGIN</a></li>
+
+                {% if user.username %}
+                    <li class="nav-item"> <a class="nav-link " href="{% url 'logout' %}">LOGOUT</a> </li>
+                    <li class="nav-item"> <a class="nav-link " href="{% url 'home_area_restrita' %}">MINHAS RECEITAS</a> </li>
+                {% else %}
+                    <li><a href="{% url 'registrar' %}">CADASTRO</a></li>
+                    <li><a href="{% url 'login' %}">LOGIN</a></li>
+                {% endif %}
                 <li><a href="{% url 'sobre' %}">SOBRE</a></li>
         </ul>
     </nav>

@@ -276,3 +276,68 @@ p{
     letter-spacing: 0px;
     font-size: 35px;
 }
+.butao{
+    justify-self: center;
+}
+.add{
+    border-radius: 10px;
+    width: 100%;
+    /* background-color: rgb(46, 230, 46); */
+    height: 35px;
+}
+.popular{
+    border-radius: 6px;
+    display: flex;
+    width: auto;
+}
+.descricao{
+    display: block;
+    width: 20%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    height: 90px;
+    line-height: 40px; 
+}
+.adicionar-receita{
+    font-family: chalet;
+    background-color: #ffae00;
+    text-align: center;
+    color: #002462;
+}
+.nomereceita{
+    display: block;
+    width: 20%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+form{
+    justify-items: center;
+}
+.image{
+    display: block;
+    width: 20%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+.tempo_preparo{
+    display: flex;
+    margin: 15px;
+    width: auto;
+}
+.escolha{
+    font-size: 30px;
+}
+.cadastrar-receita{
+    text-align: center;
+}
+.txt1{
+    text-align: center;
+}
+.txt2{
+    text-align: center;
+}.mestre{
+    text-align: center;
+}
