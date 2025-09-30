@@ -8,21 +8,32 @@
 {% block 'conteudo' %}
 <h1>Página Adicionar Receita</h1>
 
-<form name="addreceita">
-    <input type="text" name="nomeReceita" class="nomereceita form-control" placeholder="Nome da Receita">
-    <input type="url" name="imagemReceita" class="image form-control" placeholder="Link da imagem da receita">
-    <textarea name="" id="" class="descricao form-control" cols="30" rows="10" placeholder="Receita"></textarea>
-    <p name="escolha" class="escolha">Popular?</p>
+<form name="addreceita" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="user" value={{user.username}}>
+    <input type="text" name="nomeReceita" class="nomereceita form-control" placeholder="Nome da Receita" required>
+    <input type="file" name="imagemReceita" class="image form-control" placeholder="Link da imagem da receita" required>
+    <textarea name="descricaoReceita" id="descricaoReceita" class="descricao form-control" cols="30" rows="10" placeholder="Receita" required></textarea>
+    
+    <p name="escolha" class="escolha">POPULAR?</p>
     <select name="popularesReceita" id="popularesReceita" class="popular form-select" required>
         <option value="sim">SIM</option>
         <option value="nao">NÃO</option>
     </select>
+    <div class="organizar_itens">
+        <p>CATEGORIA:</p>
+        <select name="categoria" class="categoria form-select" required>
+            <option value="salgado">Salgado</option>
+            <option value="doce">Doce</option>
+        </select>
+    </div>
+    
     <input type="number" name="tempo_preparo" class="tempo_preparo form-control" placeholder="Tempo de Preparo (Minutos)" required>
 
     <br>
     <br/>
     <div class="butao">
-        <button class="add btn btn-success">Adicionar</button>
+        <button type="submit" class="add btn btn-success">Adicionar</button>
 
     </div>
 </form>

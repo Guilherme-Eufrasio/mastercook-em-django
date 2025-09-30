@@ -32,7 +32,7 @@
 
                 {% if user.username %}
                     <li class="nav-item"> <a class="nav-link " href="{% url 'logout' %}">LOGOUT</a> </li>
-                    <li class="nav-item"> <a class="nav-link " href="{% url 'home_area_restrita' %}">MINHAS RECEITAS</a> </li>
+                    <li class="nav-item"> <a class="nav-link " href="{% url 'home_area_restrita' %}">MEU PERFIL</a> </li>
                 {% else %}
                     <li><a href="{% url 'registrar' %}">CADASTRO</a></li>
                     <li><a href="{% url 'login' %}">LOGIN</a></li>

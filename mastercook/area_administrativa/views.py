@@ -18,3 +18,18 @@ def cadastrar_receita(request):
 
 def editar_receita(request, id):
     return render(request, "receitas/editar.html")
+
+
+@login_required
+def postar_receita(request):
+    if request.method == 'POST':
+        nomeReceita = request.POST.get('nomeReceita')
+        if request.FILES.get('imagemReceita'):
+            img_receita = request.FILES.get('imagemReceita')
+        descricaoReceita = request.POST.get('descricaoReceita')
+        popularesReceita = request.POST.get('popularesReceita')
+        categoria = request.POST.get('categoria')
+        tempo_preparo = request.POST.get('tempo_preparo')
+        messages.success(request, f'Receita {receitas.nomeReceita} cadastrato com sucesso!')
+        return redirect('index-area-restrita')
+    pass
