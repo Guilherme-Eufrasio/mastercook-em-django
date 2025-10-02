@@ -1,5 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from .models import Receita
+from django.contrib import messages
+from django.contrib.messages import constants
 
 
 # Create your views here.
@@ -14,14 +17,6 @@ def adm(request):
 
 @login_required
 def cadastrar_receita(request):
-    return render(request, "receitas/cadastrar.html")
-
-def editar_receita(request, id):
-    return render(request, "receitas/editar.html")
-
-
-@login_required
-def postar_receita(request):
     if request.method == 'POST':
         nomeReceita = request.POST.get('nomeReceita')
         if request.FILES.get('imagemReceita'):
@@ -30,6 +25,27 @@ def postar_receita(request):
         popularesReceita = request.POST.get('popularesReceita')
         categoria = request.POST.get('categoria')
         tempo_preparo = request.POST.get('tempo_preparo')
-        messages.success(request, f'Receita {receitas.nomeReceita} cadastrato com sucesso!')
-        return redirect('index-area-restrita')
-    pass
+        
+        messages.success(request, f'Receita {Receita.nome_prato} cadastrato com sucesso!')
+        return redirect('home_area_restrita')
+
+    return render(request, "receitas/cadastrar.html")
+
+def editar_receita(request, id):
+    return render(request, "receitas/editar.html")
+
+
+# @login_required
+# def postar_receita(request):
+#     return redirect('home_area_restrita')
+
+    # if request.method == 'POST':
+    #     # nomeReceita = request.POST.get('nomeReceita')
+    #     # if request.FILES.get('imagemReceita'):
+    #     #     img_receita = request.FILES.get('imagemReceita')
+    #     # descricaoReceita = request.POST.get('descricaoReceita')
+    #     # popularesReceita = request.POST.get('popularesReceita')
+    #     # categoria = request.POST.get('categoria')
+    #     # tempo_preparo = request.POST.get('tempo_preparo')
+    #     # messages.success(request, f'Receita {Receita.nomeReceita} cadastrato com sucesso!')
+    #     return redirect('home_area_restrita')

@@ -77,22 +77,27 @@
 
                 <ul class="navbar-nav">
                     <li class="nav-item dropup">
-                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">Mais Populares</a> 
+                        <a class="nav-link dropdown-toggle active" href="#" data-bs-toggle="dropdown" aria-expanded="false">MAIS POPULARES</a> 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'maispopu' %}">TODOS</a></li>
                             <li><a class="dropdown-item" href="{% url 'popusimples' %}">SIMPLES</a></li>
                         </ul>
                     </li>        
                     <li class="nav-item dropup">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Receitas</a> 
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">RECEITAS</a> 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'salgado' %}">SALGADOS</a></li>
                             <li><a class="dropdown-item" href="{% url 'doces' %}">DOCES</a></li>
                         </ul>
                     </li>                                          
-                    <li class="nav-item"> <a class="nav-link " href="{% url 'cadastro' %}">Cadastro</a> </li>
-                    <li class="nav-item"> <a class="nav-link " href="{% url 'login' %}">Login</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="{% url 'sobre' %}">Sobre</a> </li>
+                    {% if user.username %}
+                        <li class="nav-item"> <a class="nav-link " href="{% url 'logout' %}">LOGOUT</a> </li>
+                        <li class="nav-item"> <a class="nav-link " href="{% url 'home_area_restrita' %}">MEU PERFIL</a> </li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link " href="{% url 'registrar' %}">CADASTRO</a></li>
+                        <li class="nav-item"><a class="nav-link " href="{% url 'login' %}">LOGIN</a></li>
+                    {% endif %}
+                    <li><a class="nav-link " href="{% url 'sobre' %}">SOBRE</a></li>
 
                 </ul>
             </div>

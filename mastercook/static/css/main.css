@@ -121,42 +121,6 @@ p{
 #navbarCollapse{
     background: linear-gradient(to right, #4068f896,#002462b7);
 }
-@media only screen and (max-width:576px){
-    .menu {
-        display: none;
-        flex-direction: column;
-        background-color: #333;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px;
-      }
-      body img{
-        margin: 0%;
-    }
-    .menu-container ul.menu{
-        display: none;
-    }
-    .pratos-destaques div {
-        display: grid;
-        align-items: center;
-    }
-    .pratos-destaques {
-        display: grid;
-    }
-    .pratos-destaques div p {
-        margin: 15px;
-        text-align: center;
-    }
-}
-@media (min-width: 576px) {
-    #menu-mobile{
-        display: none;
-    }    
-}
-
-
 .fullscreen-menu.collapse.show {
     position: fixed;
     top: 0;
@@ -343,4 +307,38 @@ form{
 }
 .organizar_itens p{
     font-size: 30px;
+}
+@media only screen and (max-width:576px){
+    .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+      }
+      body img{
+        margin: 0%;
+    }
+    .menu-container ul.menu{
+        display: none;
+    }
+    .pratos-destaques div {
+        display: grid;
+        align-items: center;
+    }
+    .pratos-destaques {
+        display: grid;
+    }
+    .pratos-destaques div p {
+        margin: 15px;
+        text-align: center;
+    }
+}
+@media (min-width: 576px) {
+    #menu-mobile{
+        display: none;
+    }    
 }
