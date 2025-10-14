@@ -8,7 +8,27 @@ from django.contrib.messages import constants
 # Create your views here.
 @login_required
 def home(request):
-    return render(request, "index-area-restrita.html")
+    receitas_do_mestre = Receita.objects.filter(mestre=request.user)
+    receitas_publicadas =receitas_do_mestre.filter(ativa=True)
+    receitas_nao_publicadas =receitas_do_mestre.filter(ativa=False)
+    total_receitas = receitas_do_mestre.count()
+    return render(request, "index-area-restrita.html", {'minhas_receitas': receitas_do_mestre, 'publicadas': receitas_publicadas, 'despublicadas' : receitas_nao_publicadas, 'total_receitas': total_receitas})
+
+@login_required
+def index_receitas(request, t=None):
+    receitas_do_mestre = Receita.objects.filter(mestre=request.user)
+    print("ASdasd", receitas_do_mestre, t)
+    if t is None:
+        t = 't'
+    
+    if (t=='p'):
+        receitas_do_mestre = receitas_do_mestre.filter(ativa=True)
+    elif (t=='d'):
+        receitas_do_mestre = receitas_do_mestre.filter(ativa=False)
+    else:
+        pass
+    
+    return render(request, 'receitas/index.html',  {'minhas_receitas': receitas_do_mestre})
 
 @login_required
 def adm(request):
@@ -25,9 +45,23 @@ def cadastrar_receita(request):
         popularesReceita = request.POST.get('popularesReceita')
         categoria = request.POST.get('categoria')
         tempo_preparo = request.POST.get('tempo_preparo')
+
+        receita  = Receita.objects.create(
+                nome_prato=nomeReceita,
+                receita=descricaoReceita,
+                imagem=img_receita,
+                popular=  True if popularesReceita=="Sim" else False,
+                mestre = request.user, 
+                tempo_preparo = tempo_preparo,
+                categoria = categoria,
+                ativa = False
+        )
         
-        messages.success(request, f'Receita {Receita.nome_prato} cadastrato com sucesso!')
+        receita.save()
+
+        messages.success(request, f'Receita {receita.nome_prato} cadastrato com sucesso!')
         return redirect('home_area_restrita')
+
 
     return render(request, "receitas/cadastrar.html")
 

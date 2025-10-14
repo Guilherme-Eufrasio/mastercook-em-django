@@ -9,9 +9,10 @@
 <h2 class="mestre">Bem-vindo, {{ user.username }}!</h2>
 
 <div class="stats">
-  <p>Total de receitas: {{ total }}</p>
-  <p>Publicadas: {{ publicadas }}</p>
-  <p>Despublicadas: {{ despublicadas }}</p>
+  <!-- {{minhas_receitas.count}} -->
+  <p><a href="{% url 'index_receitas' %}">Total de receitas: {{ total_receitas}}</a></p>
+  <p><a href="{% url 'index_receitas' 'p' %}">Publicadas: {{ publicadas.count}}</a></p>
+  <p><a href="{% url 'index_receitas' 'd' %}">Despublicadas: {{ despublicadas.count }}</a></p>
 </div>
 
 <hr>

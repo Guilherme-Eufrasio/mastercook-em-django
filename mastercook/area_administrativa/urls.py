@@ -4,6 +4,8 @@ from . import views
 urlpatterns= [
     path('',views.home, name='home_area_restrita'),
     path('administrativo/', views.adm, name='administrativo'),
+    path('minhas-receitas/', views.index_receitas, name="index_receitas"),
+    path('minhas-receitas/<str:t>', views.index_receitas, name="index_receitas"),
     path('cadastrar/', views.cadastrar_receita, name="cadastrar_receita"),
     #path('postar_receita/', views.postar_receita, name="postar_receita"),
     path('editar/<int:id>/', views.editar_receita, name="editar_receita"),
