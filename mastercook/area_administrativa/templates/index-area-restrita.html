@@ -10,9 +10,9 @@
 
 <div class="stats">
   <!-- {{minhas_receitas.count}} -->
-  <p><a href="{% url 'index_receitas' %}">Total de receitas: {{ total_receitas}}</a></p>
-  <p><a href="{% url 'index_receitas' 'p' %}">Publicadas: {{ publicadas.count}}</a></p>
-  <p><a href="{% url 'index_receitas' 'd' %}">Despublicadas: {{ despublicadas.count }}</a></p>
+  <p><a href="{% url 'index_receitas' %}" class="btn btn-primary">Total de receitas: {{ total_receitas}}</a></p>
+  <p><a href="{% url 'index_receitas' 'p' %}" class="btn btn-success">Publicadas: {{ publicadas.count}}</a></p>
+  <p><a href="{% url 'index_receitas' 'd' %}" class="btn btn-danger">Despublicadas: {{ despublicadas.count }}</a></p>
 </div>
 
 <hr>

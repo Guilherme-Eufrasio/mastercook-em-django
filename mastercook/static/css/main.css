@@ -299,6 +299,7 @@ form{
 }
 .txt1{
     text-align: center;
+    margin-right: 30px;
 }
 .txt2{
     text-align: center;
@@ -307,6 +308,12 @@ form{
 }
 .organizar_itens p{
     font-size: 30px;
+}
+.stats{
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+
 }
 @media only screen and (max-width:576px){
     .menu {
