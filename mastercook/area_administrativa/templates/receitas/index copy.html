@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'title'%} Minhas Receitas {% endblock %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+{% block 'conteudo'%} 
+<div class="album py-5 ">
+  <div class="container " id="minhas_receitas">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        
+
+
+
+  {% for receita in minhas_receitas %}
+
+
+    <div class="card {% if receita.ativa %}border-success{% else %}border-danger{% endif %}  mb-3" style="width: 18rem;">
+      <img src="{{receita.imagem.url}}" class="card-img-top" alt="{{ receita.nome_prato}}" title="{{ receita.nome_prato}}-{{ receita.mestre}}">
+      <div class="card-body {% if receita.popular %}text-bg-success{% else %}text-bg-danger{% endif %}">
+        <h5 class="card-title">{{ receita.nome_prato}}</h5>
+        <p class="card-text ">          
+          <span class="badge text-bg-primary">{{ receita.tempo_preparo}} min</span>
+          <span class="badge text-bg-primary">{{ receita.categoria}}</span>          
+          <br>
+        </p>
+        <h6><small>Mestre {{ receita.mestre}}</small></h6>
+        
+        <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#receitaModal">Ver Receita</button>
+
+      </div>
+    </div>
+
+    {%endfor%}
+
+  </div>
+
+      
+</div>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="receitaModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <li>asdasd</li>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-primary">Publicar</button>
+          <button type="button" class="btn btn-primary">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% endblock %}

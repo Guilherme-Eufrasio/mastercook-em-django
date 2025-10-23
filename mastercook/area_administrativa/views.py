@@ -17,7 +17,7 @@ def home(request):
 @login_required
 def index_receitas(request, t=None):
     receitas_do_mestre = Receita.objects.filter(mestre=request.user)
-    print("ASdasd", receitas_do_mestre, t)
+    #print("ASdasd", receitas_do_mestre, t)
     if t is None:
         t = 't'
     
