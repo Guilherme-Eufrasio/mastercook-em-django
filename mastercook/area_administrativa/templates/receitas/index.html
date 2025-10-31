@@ -18,7 +18,7 @@
     <img class="card-img-top" src="{{receita.imagem.url}}"  alt="{{ receita.nome_prato}}" title="{{ receita.nome_prato}}-{{ receita.mestre}}">
     <h2 class="fw-normal text-center">{{ receita.nome_prato}}</h2>
 
-    <div class="card-body ">
+    <div class="card-body " id="conteudo_gerenciar_receita">
         <span class="badge text-bg-primary">Popular:  {% if receita.popular %}SIM{% else %}NÃO{% endif %} </span>
         <span class="badge text-bg-info">Publicado: {% if receita.ativa %}SIM{% else %}NÃO{% endif %}</span>
         <p class="card-text">Mestre {{receita.mestre}}</p>
@@ -43,7 +43,7 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -60,6 +60,66 @@
         </div>
       </div>
     </div>
-  </div>
-  
+  </div> -->
+
+
+  <script>
+    function gerenciarReceita(funcao, idReceita){
+      document.getElementById('conteudo_gerenciar_receita').innerHTML= `
+                  <form name="formGerenciarReceita" id="formGerenciarReceita${receita.id}" >
+                      <label>Nome receita</label><br>
+                      <input type="text"  id="nomeReceita" class="nomereceita form-control" placeholder="Nome da Receita" value="${receita.nome}" ${funcao==="visualizar" ? "readonly" : ""}>
+                      <br>
+                      <label>Imagem</label><br>
+                      <input type="url"  id="imagemReceita" class="image form-control" placeholder="Link da imagem da receita" value="${receita.img}" ${funcao==="visualizar" ? "readonly" : ""}>
+                      <br>
+                      <label>Receita</label><br>
+                      <textarea class="form-control" id="receita" class="descricao form-control" placeholder="Receita" ${funcao==="visualizar" ? "readonly" : ""}  rows="5">${receita.receita}</textarea>
+              
+              
+                      <p id="escolha">POPULAR? </p>
+                      <select name="popularesReceita" id="popularesReceita" class="popular form-control" ${funcao==="visualizar" ? "disabled" : ""}>
+                          <option value="sim" ${receita.populares==="sim" ? "selected" : ""} >SIM</option>
+                          <option value="nao" ${receita.populares==="nao" ? "selected" : ""} >NÃO</option>
+                      </select>
+                      <br>
+                      <div class="organizar_itens">
+                          <p>CATEGORIA:</p>
+                          <select name="categoria" id="categoria" class="categoria form-control" ${funcao==="visualizar" ? "disabled" : ""}>
+                              <option value="salgado"  ${receita.categoria==="salgado" ? "selected" : ""}>Salgado</option>
+                              <option value="doce" ${receita.categoria==="doce" ? "selected" : ""}>Doce</option>
+                          </select>
+                      </div>
+                      <br>
+                      <div class="organizar_itens">
+                          <div class="form-check form-switch">
+                              <input class="form-check-input" type="checkbox" id="receita_publicado" ${receita.publicado==="sim" ? "checked" : ""}  ${funcao==="visualizar" ? "disabled" : ""}>
+                              <label class="form-check-label" for="receita_publicado">PUBLICADO</label>
+                          </div>                    
+              
+                      </div>                
+                      <br>
+                      <label>Tempo de Preparo (em minutos)</label><br>
+              
+                      <input type="text" id="tempo_preparo" class="tempo_preparo form-control" placeholder="Tempo de preparo (minutos)" value="${receita.tempo_preparo}" ${funcao==="visualizar" ? "readonly" : ""}>
+              
+                      <br/>
+                      <br>                
+                  </form>            
+              
+                  ` 
+              
+                  if(funcao==="editar"){
+                      document.getElementById('conteudo_gerenciar_receita').innerHTML+= `
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar edição</button>
+                          <button type="button" class="btn btn-primary pubReceita" id="pubReceita"  onclick="salvarEdicaoReceita('${receita.id}')">SALVAR MODIFICAÇÕES</button>
+                      </div>
+                      `
+                  }                              
+              
+                  new bootstrap.Modal(document.getElementById('modalGerenciarReceita')).show();
+                }
+
+  </script>
   {% endblock %}
