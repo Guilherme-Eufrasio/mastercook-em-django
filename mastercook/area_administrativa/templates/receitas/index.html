@@ -8,17 +8,14 @@
 <div class="album py-5 ">
   <div class="container " id="minhas_receitas">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        
-
-
-
+      
   {% for receita in minhas_receitas %}
 
-  <div class="card shadow-sm {% if receita.ativa %}border-success{% else %}border-danger{% endif %}  mb-3" id=minha_receita-${receita.id}>
+  <div class="card shadow-sm {% if receita.ativa %}border-success{% else %}border-danger{% endif %}  mb-3" id=minha_receita-{{receita.id}}>
     <img class="card-img-top" src="{{receita.imagem.url}}"  alt="{{ receita.nome_prato}}" title="{{ receita.nome_prato}}-{{ receita.mestre}}">
     <h2 class="fw-normal text-center">{{ receita.nome_prato}}</h2>
 
-    <div class="card-body " id="conteudo_gerenciar_receita">
+    <div class="card-body " id="conteudo_gerenciar_receitas">
         <span class="badge text-bg-primary">Popular:  {% if receita.popular %}SIM{% else %}NÃO{% endif %} </span>
         <span class="badge text-bg-info">Publicado: {% if receita.ativa %}SIM{% else %}NÃO{% endif %}</span>
         <p class="card-text">Mestre {{receita.mestre}}</p>
@@ -42,8 +39,8 @@
 </div>
 
 
-  <!-- Modal -->
-  <!-- <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
+
+  <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -51,7 +48,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <li>asdasd</li>
+            <li></li>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -60,66 +57,127 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div> 
 
+  <!-- Modal DE AVISO EXIBIÇÃO -->
+  <div class="modal fade" id="modalMinhasReceitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalMinhasReceitasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalMinhasReceitasLabel">Atenção</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary pubReceita" id="pubReceita" >SIM</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal GERENCIAR RECEITA-->
+<div class="modal fade" id="modalGerenciarReceita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalGerenciarReceitaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalGerenciarReceitaLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="conteudo_gerenciar_receita">
+                ...
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary pubReceita" id="pubReceita" >SIM</button>
+                </div> -->
+        </div>
+    </div>
+</div>
+<!-- Toast de aviso sucesso -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+    <div id="toastReceitaAtualizada" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Cadastro da receita atualizado com sucesso!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+        </div>
+    </div>
+</div>
 
-  <script>
-    function gerenciarReceita(funcao, idReceita){
-      document.getElementById('conteudo_gerenciar_receita').innerHTML= `
-                  <form name="formGerenciarReceita" id="formGerenciarReceita${receita.id}" >
-                      <label>Nome receita</label><br>
-                      <input type="text"  id="nomeReceita" class="nomereceita form-control" placeholder="Nome da Receita" value="${receita.nome}" ${funcao==="visualizar" ? "readonly" : ""}>
-                      <br>
-                      <label>Imagem</label><br>
-                      <input type="url"  id="imagemReceita" class="image form-control" placeholder="Link da imagem da receita" value="${receita.img}" ${funcao==="visualizar" ? "readonly" : ""}>
-                      <br>
-                      <label>Receita</label><br>
-                      <textarea class="form-control" id="receita" class="descricao form-control" placeholder="Receita" ${funcao==="visualizar" ? "readonly" : ""}  rows="5">${receita.receita}</textarea>
-              
-              
-                      <p id="escolha">POPULAR? </p>
-                      <select name="popularesReceita" id="popularesReceita" class="popular form-control" ${funcao==="visualizar" ? "disabled" : ""}>
-                          <option value="sim" ${receita.populares==="sim" ? "selected" : ""} >SIM</option>
-                          <option value="nao" ${receita.populares==="nao" ? "selected" : ""} >NÃO</option>
-                      </select>
-                      <br>
-                      <div class="organizar_itens">
-                          <p>CATEGORIA:</p>
-                          <select name="categoria" id="categoria" class="categoria form-control" ${funcao==="visualizar" ? "disabled" : ""}>
-                              <option value="salgado"  ${receita.categoria==="salgado" ? "selected" : ""}>Salgado</option>
-                              <option value="doce" ${receita.categoria==="doce" ? "selected" : ""}>Doce</option>
-                          </select>
-                      </div>
-                      <br>
-                      <div class="organizar_itens">
-                          <div class="form-check form-switch">
-                              <input class="form-check-input" type="checkbox" id="receita_publicado" ${receita.publicado==="sim" ? "checked" : ""}  ${funcao==="visualizar" ? "disabled" : ""}>
-                              <label class="form-check-label" for="receita_publicado">PUBLICADO</label>
-                          </div>                    
-              
-                      </div>                
-                      <br>
-                      <label>Tempo de Preparo (em minutos)</label><br>
-              
-                      <input type="text" id="tempo_preparo" class="tempo_preparo form-control" placeholder="Tempo de preparo (minutos)" value="${receita.tempo_preparo}" ${funcao==="visualizar" ? "readonly" : ""}>
-              
-                      <br/>
-                      <br>                
-                  </form>            
-              
-                  ` 
-              
-                  if(funcao==="editar"){
-                      document.getElementById('conteudo_gerenciar_receita').innerHTML+= `
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar edição</button>
-                          <button type="button" class="btn btn-primary pubReceita" id="pubReceita"  onclick="salvarEdicaoReceita('${receita.id}')">SALVAR MODIFICAÇÕES</button>
-                      </div>
-                      `
-                  }                              
-              
-                  new bootstrap.Modal(document.getElementById('modalGerenciarReceita')).show();
-                }
+<script>
+  async function gerenciarReceita(funcao, idReceita) {
+    const urlBase = "{% url 'pesquisar_receita' 0 %}".replace('0', '');  
+    try {
+      
+      const response = await fetch(`${urlBase}${idReceita}`);
+  
+      if (!response.ok) {
+        throw new Error(`Erro ${response.status}: ${response.statusText}`);
+      }
+  
+      const receita = await response.json();
+  
+      // Agora você pode montar o HTML com os dados
+      document.getElementById('conteudo_gerenciar_receita').innerHTML = `
+        <form id="formGerenciarReceita${receita.id}" method="POST" enctype="multipart/form-data" action ="{% url 'salvar_edicao_receita' ${receita.id} %}">
+          {% csrf_token %}
+          <label>Nome receita</label><br>
+          <input type="text" name="nomeReceitaEditar" id="nomeReceita" class="form-control"
+            value="${receita.nome}" ${funcao === "visualizar" ? "readonly" : ""}>
+          <br>
+  
+          <label>Imagem</label><br>
+          <img id="imagemReceita" class="card-img-top" src="${receita.imagem}"  alt="${receita.nome}" title="${receita.nome}-${receita.mestre.nome}"  ${funcao === "visualizar" ? "readonly" : ""}>
+          <input type="file" id="imagemReceitaEditar" name="imagemReceitaEditar" style="${funcao==='visualizar' ? 'display:none;' : ''}" value="${receita.imagem}">
+          <br>
+
+  
+          <label>Receita</label><br>
+          <textarea class="form-control" name="receitaEditar" id="receita"
+            ${funcao === "visualizar" ? "readonly" : ""} rows="5">${receita.receita}</textarea>
+  
+          <p>POPULAR?</p>
+          <select id="popular" name="popularEditar class="form-control"
+            ${funcao === "visualizar" ? "disabled" : ""}>
+            <option value="sim" ${receita.popular === "sim" ? "selected" : ""}>SIM</option>
+            <option value="não" ${receita.popular === "não" ? "selected" : ""}>NÃO</option>
+          </select>
+          <br>
+  
+          <label>Categoria</label>
+          <select id="categoria" name="categoriaEditar" class="form-control"
+            ${funcao === "visualizar" ? "disabled" : ""}>
+            <option value="Salgado" ${receita.categoria === "Salgado" ? "selected" : ""}>Salgado</option>
+            <option value="Doce" ${receita.categoria === "Doce" ? "selected" : ""}>Doce</option>
+          </select>
+          <br>
+  
+          <label>Tempo de preparo (min)</label>
+          <input type="text" id="tempo_preparoEditar" name="tempo_preparoEditar" class="form-control"
+            value="${receita.tempo_preparo}" ${funcao === "visualizar" ? "readonly" : ""}>
+        </form>
+      `;
+  
+      if (funcao === "editar") {
+        document.getElementById('conteudo_gerenciar_receita').innerHTML += `
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </div>
+        `;
+      }
+  
+      new bootstrap.Modal(document.getElementById('modalGerenciarReceita')).show();
+    } catch (error) {
+      console.error("Erro ao carregar a receita:", error);
+    }
+  }
 
   </script>
+  
+  
+
   {% endblock %}

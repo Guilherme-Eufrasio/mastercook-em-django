@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Receita
 from django.contrib import messages
 from django.contrib.messages import constants
-
+from django.http import JsonResponse
 
 # Create your views here.
 @login_required
@@ -67,6 +67,56 @@ def cadastrar_receita(request):
 
 def editar_receita(request, id):
     return render(request, "receitas/editar.html")
+
+def pesquisar_receita(request, id):
+    # Busca a receita pelo ID ou retorna erro 404 se não existir
+    receita = get_object_or_404(Receita, pk=id)
+
+    # Cria o dicionário de dados que será convertido em JSON
+    dados = {
+        "id": receita.id,
+        "nome": receita.nome_prato,
+        "imagem": receita.imagem.url,
+        "receita": receita.receita,
+        "mestre": {
+            "id": receita.mestre.id,
+            "nome": receita.mestre.username,
+        },
+        "popular": "sim"  if receita.popular else "não",
+        "tempo_preparo": receita.tempo_preparo,
+        "categoria": receita.categoria,
+        "ativa" : "sim" if receita.ativa else "não"
+    }
+
+    # Retorna o JSON
+    return JsonResponse(dados, json_dumps_params={'ensure_ascii': False})
+
+def salvar_edicao_receita(request, id):
+    receita_editar = get_object_or_404(Receita, pk=id)
+
+    if request.method == 'POST':
+        nomeReceita = request.POST.get('nomeReceitaEditar')
+        if request.FILES.get('imagemReceitaEditar'):
+            img_receita = request.FILES.get('imagemReceitaEditar')
+        descricaoReceita = request.POST.get('receitaEditar')
+        popularesReceita = request.POST.get('popularEditar')
+        categoria = request.POST.get('categoriaEditar')
+        tempo_preparo = request.POST.get('tempo_preparoEditar')
+
+        receita_editar.nome_prato=nomeReceita
+        receita_editar.receita=descricaoReceita
+        receita_editar.imagem=img_receita,
+        receita_editar.popular=  True if popularesReceita=="Sim" else False,
+        # receita_editar.mestre = request.user, 
+        receita_editar.tempo_preparo = tempo_preparo,
+        receita_editar.categoria = categoria,
+        #receita_editar.ativa = False
+        
+        
+        receita_editar.save()    
+
+        messages.success(request, f'Receita {receita_editar.nome_prato} atualizada com sucesso!')
+        return redirect('index_receitas')        
 
 
 # @login_required
