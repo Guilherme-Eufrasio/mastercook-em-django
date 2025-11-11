@@ -122,7 +122,7 @@
   
       // Agora você pode montar o HTML com os dados
       document.getElementById('conteudo_gerenciar_receita').innerHTML = `
-        <form id="formGerenciarReceita${receita.id}" method="POST" enctype="multipart/form-data" action ="{% url 'salvar_edicao_receita' ${receita.id} %}">
+        <form id="formGerenciarReceita${receita.id}" method="POST" enctype="multipart/form-data" action="{% url 'salvar_edicao_receita' 0 %}".replace("0", receita.id); %}">
           {% csrf_token %}
           <label>Nome receita</label><br>
           <input type="text" name="nomeReceitaEditar" id="nomeReceita" class="form-control"
