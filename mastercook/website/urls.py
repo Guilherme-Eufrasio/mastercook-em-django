@@ -4,14 +4,12 @@ from . import views
 
 urlpatterns= [
     path('', views.home, name='home'),
-    path('pessoas/', views.lista_pessoa, name='lista_pessoa'),
-    path('pessoas/<int:id>/', views.detalhe_pessoa, name='detalhe_pessoa'),
     path('login/', views.logar, name='login'),
     path('cadastro/', views.cadastrar, name='cadastro'),
-    path('maispopu/', views.popular, name='maispopu'),
-    path('popusimples/', views.simples, name='popusimples'),
-    path('salgado/', views.salgados, name='salgado'),
-    path('doces/', views.doces, name='doces'),
+    path('receitas/populares/', views.popular, name='populares'),
+    path('receitas/simples/', views.simples, name='simples'),
+    path('receitas/salgado/', views.salgados, name='salgado'),
+    path('receitas/doces/', views.doces, name='doces'),
     path('sobre/', views.criadores, name='sobre'),
     path('homeUsuario/', views.homeUser, name='homeUsuario'),
 ]
