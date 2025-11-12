@@ -40,7 +40,7 @@
 
 
 
-  <div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
+<div class="modal fade" id="receitaModal" tabindex="-1" aria-labelledby="receitaModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -57,10 +57,10 @@
         </div>
       </div>
     </div>
-  </div> 
+</div> 
 
   <!-- Modal DE AVISO EXIBIÇÃO -->
-  <div class="modal fade" id="modalMinhasReceitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalMinhasReceitasLabel" aria-hidden="true">
+<div class="modal fade" id="modalMinhasReceitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalMinhasReceitasLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -68,7 +68,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                Você deseja publicar/despublicar esta receita?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
@@ -77,6 +77,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal GERENCIAR RECEITA-->
 <div class="modal fade" id="modalGerenciarReceita" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalGerenciarReceitaLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -108,8 +109,18 @@
 </div>
 
 <script>
+  const toastElement = document.getElementById('toastReceitaAtualizada');
+  const urlBase = "{% url 'pesquisar_receita' 0 %}".replace('0', '');  
+            
+  document.addEventListener("DOMContentLoaded",  function() {
+    console.log("DOMContentLoaded Carregado!");
+  }); 
+
   async function gerenciarReceita(funcao, idReceita) {
-    const urlBase = "{% url 'pesquisar_receita' 0 %}".replace('0', '');  
+    {% url 'salvar_edicao_receita' 0 as salvar_edicao_receita %}
+    const urlSalvarEdicao = "{{ salvar_edicao_receita }}".replace('/0/', `/${idReceita}/`);
+    
+
     try {
       
       const response = await fetch(`${urlBase}${idReceita}`);
@@ -122,31 +133,31 @@
   
       // Agora você pode montar o HTML com os dados
       document.getElementById('conteudo_gerenciar_receita').innerHTML = `
-        <form id="formGerenciarReceita${receita.id}" method="POST" enctype="multipart/form-data" action="{% url 'salvar_edicao_receita' 0 %}".replace("0", receita.id); %}">
+        <form id="formGerenciarReceita${receita.id}" method="POST" enctype="multipart/form-data" action="${urlSalvarEdicao}">
           {% csrf_token %}
           <label>Nome receita</label><br>
           <input type="text" name="nomeReceitaEditar" id="nomeReceita" class="form-control"
             value="${receita.nome}" ${funcao === "visualizar" ? "readonly" : ""}>
           <br>
-  
+
           <label>Imagem</label><br>
-          <img id="imagemReceita" class="card-img-top" src="${receita.imagem}"  alt="${receita.nome}" title="${receita.nome}-${receita.mestre.nome}"  ${funcao === "visualizar" ? "readonly" : ""}>
-          <input type="file" id="imagemReceitaEditar" name="imagemReceitaEditar" style="${funcao==='visualizar' ? 'display:none;' : ''}" value="${receita.imagem}">
+          <img id="imagemReceita" class="card-img-top" src="${receita.imagem}" alt="${receita.nome}" title="${receita.nome}">
+          <input type="file" id="imagemReceitaEditar" name="imagemReceitaEditar"
+            style="${funcao==='visualizar' ? 'display:none;' : ''}">
           <br>
 
-  
           <label>Receita</label><br>
           <textarea class="form-control" name="receitaEditar" id="receita"
             ${funcao === "visualizar" ? "readonly" : ""} rows="5">${receita.receita}</textarea>
-  
+
           <p>POPULAR?</p>
-          <select id="popular" name="popularEditar class="form-control"
+          <select id="popular" name="popularEditar" class="form-control"
             ${funcao === "visualizar" ? "disabled" : ""}>
-            <option value="sim" ${receita.popular === "sim" ? "selected" : ""}>SIM</option>
-            <option value="não" ${receita.popular === "não" ? "selected" : ""}>NÃO</option>
+            <option value="sim" ${receita.popular ? "selected" : ""}>SIM</option>
+            <option value="nao" ${!receita.popular ? "selected" : ""}>NÃO</option>
           </select>
           <br>
-  
+
           <label>Categoria</label>
           <select id="categoria" name="categoriaEditar" class="form-control"
             ${funcao === "visualizar" ? "disabled" : ""}>
@@ -154,28 +165,86 @@
             <option value="Doce" ${receita.categoria === "Doce" ? "selected" : ""}>Doce</option>
           </select>
           <br>
-  
+
           <label>Tempo de preparo (min)</label>
           <input type="text" id="tempo_preparoEditar" name="tempo_preparoEditar" class="form-control"
             value="${receita.tempo_preparo}" ${funcao === "visualizar" ? "readonly" : ""}>
+          
+          ${funcao === "editar" ? `
+            <div class="modal-footer mt-3">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
+            </div>` : ""}
         </form>
       `;
-  
-      if (funcao === "editar") {
-        document.getElementById('conteudo_gerenciar_receita').innerHTML += `
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Salvar</button>
-          </div>
-        `;
-      }
-  
+        
       new bootstrap.Modal(document.getElementById('modalGerenciarReceita')).show();
     } catch (error) {
       console.error("Erro ao carregar a receita:", error);
     }
   }
+    document.addEventListener("submit", (e) => {
+      console.log("Formulário enviado para:", e.target.action);
+    });
 
+
+    async function alterarPublicacao(id, publicar = true) {
+    {% url 'salvar_publicacao_receita' 0 as salvar_publicacao_receita %}
+    const urlSalvarPublicacao = "{{ salvar_publicacao_receita }}".replace('/0/', `/${id}/`);      
+      try {
+          
+          const response = await fetch(`${urlBase}${id}`);
+      
+          if (!response.ok) {
+            throw new Error(`Erro ${response.status}: ${response.statusText}`);
+          }
+      
+          const receita = await response.json();
+          const acao = publicar ? "postar" : "despublicar";
+          document.querySelector('.modal-body').innerText = `Deseja ${acao} a receita ${receita.nome}?`;
+                const modalElementMinhasReceitas = document.getElementById('modalMinhasReceitas');
+                //new bootstrap.Modal(document.getElementById('modalMinhasReceitas')).show();
+                const modal = new bootstrap.Modal(modalElementMinhasReceitas);
+                modal.show();
+            
+            
+                const botaoConfirmar = document.getElementById("pubReceita");
+                const novoBotao = botaoConfirmar.cloneNode(true);
+                botaoConfirmar.parentNode.replaceChild(novoBotao, botaoConfirmar);
+            
+                novoBotao.addEventListener("click", function () {
+                    receita.publicado = publicar ? "sim" : "nao";
+            
+                    fetch(`${urlSalvarPublicacao}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": "{{ csrf_token }}",
+                        },
+                        body: JSON.stringify({ publicado: receita.publicado }),
+                    })            
+                    //Esconde a modal
+                    modal.hide();
+                    
+                    //Exibe a mensagem
+                    const toast = new bootstrap.Toast(toastElement, { delay: 3000 }); // 3 segundos
+                    toast.show();
+            
+                    //Aguarda 1 segundo para atualiza a página
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1000)
+            
+                });
+        
+        } catch (error) {
+          console.error("Erro ao carregar a receita:", error);
+        }
+
+            
+            
+              
+            }    
   </script>
   
   
