@@ -107,9 +107,9 @@ h1{
     letter-spacing: 0px;
     font-size: 35px;
 }
-p{
+/* p{
     font-family: chalet;
-}
+} */
 #menu-mobile{
     background:linear-gradient(to right, #4069F8,#002462) ;
 }
@@ -265,7 +265,7 @@ p{
     line-height: 40px; 
 }
 .adicionar-receita{
-    font-family: chalet;
+    font-family: chalet1;
     background-color: #ffae00;
     text-align: center;
     color: #002462;
