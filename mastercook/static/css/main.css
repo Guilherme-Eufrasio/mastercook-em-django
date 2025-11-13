@@ -107,9 +107,9 @@ h1{
     letter-spacing: 0px;
     font-size: 35px;
 }
-/* p{
+.favP p{
     font-family: chalet;
-} */
+}
 #menu-mobile{
     background:linear-gradient(to right, #4069F8,#002462) ;
 }

@@ -11,7 +11,7 @@
 <div class="galeria" id="galeria_simples">
 {% for receita in receitas_simples %}
   <a title="{{receita.nome_prato}} do mestre {{receita.mestre.username}}" onclick="exibirReceita('{{receita.id}}', '{{receita.mestre.username}}')">
-              <div class="item" id="receita-{{receita.id}}">
+              <div class="item card" style="width: 19pc;" id="receita-{{receita.id}}">
                 <img src="{{receita.imagem.url}}" alt="Imagem da receita {{receita.nome_prato}}" style="max-height: 200px; object-fit: cover;">
                 <div class="info">
                   <h3>{{receita.nome_prato}}</h3>
