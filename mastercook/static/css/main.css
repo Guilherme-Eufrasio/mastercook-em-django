@@ -219,6 +219,7 @@ h1{
 }
 .pratos-destaques div p{
     margin:15px;
+    font-family: chalet;
 }
 .pratos-destaques .populares{
     width: 500px;
@@ -316,6 +317,12 @@ form{
     gap: 20px; 
 
 }
+.galeria{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin: 20px;
+}
 @media only screen and (max-width:576px){
     .menu {
         display: none;
@@ -344,6 +351,10 @@ form{
         margin: 15px;
         text-align: center;
     }
+    .galeria{
+        justify-content: center;
+    }
+
 }
 @media (min-width: 576px) {
     #menu-mobile{
