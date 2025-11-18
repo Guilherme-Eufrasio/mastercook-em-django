@@ -18,8 +18,10 @@
                   <h6>Mestre {{receita.mestre.username}}</h6>
                   <p>
                   <span class="badge text-bg-primary">
-                    {% if receita.categoria == "S" %}
+                    {% if receita.categoria == "S"  %}
                       Salgado
+                    {% elif receita.categoria == "Salgado"  %}
+                      Salgado   
                     {% else %}
                       Doce
                     {% endif %}
@@ -29,6 +31,12 @@
                 </div>                
               </div>
   </a>
+  {%empty %}
+  <div class="container">
+    <div class="alert alert-danger" role="alert">
+      <p class="text-center"> Desculpe, não tem nenhuma receita para ser exibida.</p> 
+    </div>
+  </div>
 {% endfor %}
 </div>
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">

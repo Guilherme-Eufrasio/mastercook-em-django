@@ -17,18 +17,19 @@ def home(request):
 @login_required
 def index_receitas(request, t=None):
     receitas_do_mestre = Receita.objects.filter(mestre=request.user)
-    #print("ASdasd", receitas_do_mestre, t)
+    titulo = f"Total de Receitas: {receitas_do_mestre.count()}"
+
     if t is None:
-        t = 't'
-    
+        t = 't'    
     if (t=='p'):
         receitas_do_mestre = receitas_do_mestre.filter(ativa=True)
+        titulo = f"Publicadas: {receitas_do_mestre.count()}"
     elif (t=='d'):
         receitas_do_mestre = receitas_do_mestre.filter(ativa=False)
+        titulo = f"Despublicadas: {receitas_do_mestre.count()}"
     else:
         pass
-    
-    return render(request, 'receitas/index.html',  {'minhas_receitas': receitas_do_mestre})
+    return render(request, 'receitas/index.html',  {'minhas_receitas': receitas_do_mestre,'titulo_conteudo':titulo})
 
 @login_required
 def adm(request):
@@ -53,7 +54,7 @@ def cadastrar_receita(request):
                 popular=  True if popularesReceita=="Sim" else False,
                 mestre = request.user, 
                 tempo_preparo = tempo_preparo,
-                categoria = categoria,
+                categoria = categoria, #talez precise pegar apenas o primeiro caracter
                 ativa = False
         )
         
@@ -119,9 +120,10 @@ def salvar_edicao_receita(request, id):
 
 def salvar_publicacao_receita(request, id):
     receita = get_object_or_404(Receita, pk=id)
-    
+    #print(receita.categoria)
     if request.method == 'POST':
         receita.ativa = not receita.ativa 
+        
         receita.save()
         messages.success(request, f'Receita "{receita.nome_prato}" publicada com sucesso!')
         return redirect('index_receitas')
