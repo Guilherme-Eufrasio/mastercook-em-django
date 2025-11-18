@@ -1,0 +1,1 @@
+web: gunicorn mastercook.wsgi --log-file - 
