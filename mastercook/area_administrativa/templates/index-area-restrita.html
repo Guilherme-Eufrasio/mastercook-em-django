@@ -1,39 +1,112 @@
 {% extends "base.html" %}
 {% load static %}
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 {% endblock %}
+
 {% block 'title' %}Minhas Receitas{% endblock %}
 
 {% block 'conteudo' %}
-<h2 class="mestre">Bem-vindo, {{ user.username }}!</h2>
 
-<div class="stats">
-  <!-- {{minhas_receitas.count}} -->
-  <p><a href="{% url 'index_receitas' %}" class="btn btn-primary">Total de receitas: {{ total_receitas}}</a></p>
-  <p><a href="{% url 'index_receitas' 'p' %}" class="btn btn-success">Publicadas: {{ publicadas.count}}</a></p>
-  <p><a href="{% url 'index_receitas' 'd' %}" class="btn btn-danger">Despublicadas: {{ despublicadas.count }}</a></p>
+<div class="container mt-4">
+
+    <h2 class="fw-bold mb-4">Olá, {{ user.username }} 👋</h2>
+
+    <!-- Estatísticas -->
+    <div class="row text-center mb-4">
+
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'index_receitas' %}" class="text-decoration-none">
+                <div class="card shadow-sm border-0 stat-card">
+                    <div class="card-body">
+                        <h5 class="text-primary fw-bold">Total</h5>
+                        <p class="display-6">{{ total_receitas }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'index_receitas' 'p' %}" class="text-decoration-none">
+                <div class="card shadow-sm border-0 stat-card">
+                    <div class="card-body">
+                        <h5 class="text-success fw-bold">Publicadas</h5>
+                        <p class="display-6">{{ publicadas.count }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <a href="{% url 'index_receitas' 'd' %}" class="text-decoration-none">
+                <div class="card shadow-sm border-0 stat-card">
+                    <div class="card-body">
+                        <h5 class="text-danger fw-bold">Despublicadas</h5>
+                        <p class="display-6">{{ despublicadas.count }}</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+    <hr class="my-4">
+
+    <!-- Botão de cadastro -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">Minhas Receitas</h3>
+        <a href="{% url 'cadastrar_receita' %}" class="btn btn-success">
+            <i class="fa-solid fa-circle-plus me-2"></i>Nova Receita
+        </a>
+    </div>
+
+    <!-- Lista de receitas -->
+    <div class="row">
+
+        {% for r in receitas %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ r.titulo }}</h5>
+
+                    {% if r.publicada %}
+                        <span class="badge bg-success mb-2">Publicada</span>
+                    {% else %}
+                        <span class="badge bg-danger mb-2">Despublicada</span>
+                    {% endif %}
+
+                    <div class="mt-3">
+
+                        <a href="{% url 'editar_receita' r.id %}" class="btn btn-primary btn-sm me-1">
+                            <i class="fa-solid fa-pen-to-square"></i> Editar
+                        </a>
+
+                        <a href="{% url 'remover_receita' r.id %}" class="btn btn-danger btn-sm me-1">
+                            <i class="fa-solid fa-trash"></i> Remover
+                        </a>
+
+                        {% if r.publicada %}
+                            <a href="{% url 'despublicar_receita' r.id %}" class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-eye-slash"></i> Despublicar
+                            </a>
+                        {% else %}
+                            <a href="{% url 'despublicar_receita' r.id %}" class="btn btn-success btn-sm">
+                                <i class="fa-solid fa-eye"></i> Publicar
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted fs-5">Você ainda não cadastrou receitas.</p>
+        {% endfor %}
+
+    </div>
+
 </div>
 
-<hr>
-
-<h3 class="txt2">Minhas Receitas</h3>
-<div class="cadastrar-receita">
-    <a href="{% url 'cadastrar_receita' %}" class="btn btn-success">Cadastrar nova receita</a>
-</div>
-
-
-<ul>
-  {% for r in receitas %}
-    <li>
-      <strong>{{ r.titulo }}</strong> 
-      {% if r.publicada %}(Publicada){% else %}(Despublicada){% endif %}
-      <a href="{% url 'editar_receita' r.id %}">Editar</a> |
-      <a href="{% url 'remover_receita' r.id %}">Remover</a> |
-      <a href="{% url 'despublicar_receita' r.id %}">Despublicar</a>
-    </li>
-  {% empty %}
-    <p class="txt1">Você ainda não cadastrou receitas.</p>
-  {% endfor %}
-</ul>
 {% endblock %}

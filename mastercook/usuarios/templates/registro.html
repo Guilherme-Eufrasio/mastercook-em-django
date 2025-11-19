@@ -1,37 +1,61 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 {% load static %}
-{% block 'title'%} Página Principal	 {% endblock %}
+
+{% block 'title' %}Cadastrar novo usuário{% endblock %}
+
 {% block 'head' %}
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %}
 
-{% block 'conteudo'%}
-{% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
-<body class="text-center">
+{% block 'conteudo' %}
+<div class="text-center">
+
+    {% if erro %}
+        <p class="text-danger">{{ erro }}</p>
+    {% endif %}
+
     <main class="form-signin">
-        <form name="formCadUsuario"  id="formCadUsuario" method="post">
-            <a href="{% url 'home'%}"><img class="mb-4" src="{% static 'img/logo-site.png' %}" alt="" width="72" height="88"></a>
+
+        <form id="formCadUsuario" name="formCadUsuario" method="post">
             {% csrf_token %}
+
+            <a href="{% url 'home' %}">
+                <img class="mb-4" src="{% static 'img/logo-site.png' %}" alt="Logo do site" width="72" height="88">
+            </a>
+
             <h1 class="h3 mb-3 fw-normal">Cadastro</h1>
-            <div class="form-floating">
-                <input type="text" id="inputNome"  name="inputNome" class="form-control" placeholder="name" />
+
+            <div class="form-floating mb-3">
+                <input type="text" id="inputNome" name="inputNome" class="form-control" placeholder="Nome de usuário">
                 <label for="inputNome">Nome de Usuário</label>
             </div>
-            <div class="form-floating">
-                <input type="email" class="form-control" id="inputEmail" name="inputEmail"  placeholder="name@example.com">
+
+            <div class="form-floating mb-3">
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="email@example.com">
                 <label for="inputEmail">Email</label>
             </div>
-            <div class="form-floating">
-                <input type="password" class="form-control" id="inputSenha" name="inputSenha" placeholder="Password" required>
+
+            <div class="form-floating mb-3">
+                <input type="password" id="inputSenha" name="inputSenha" class="form-control" placeholder="Senha" required>
                 <label for="inputSenha">Senha</label>
             </div>
-            <div class="form-floating">
-                <input type="password" id="inputRepitaSenha" name="inputRepitaSenha" class="form-control" placeholder="Password" required/>
+
+            <div class="form-floating mb-3">
+                <input type="password" id="inputRepitaSenha" name="inputRepitaSenha" class="form-control" placeholder="Repita sua senha" required>
                 <label for="inputRepitaSenha">Repita sua Senha</label>
             </div>
+
             <br>
-            <button class="bota w-100 btn btn-lg btn-primary">Cadastrar</button>
-            <p class="mt-5 mb-3 text-muted">&copy;2025</p>
+
+            <button type="submit" class="bota w-100 btn btn-lg btn-primary">
+                Cadastrar
+            </button>
+
+            <p class="mt-5 mb-3 text-muted">&copy; 2025</p>
         </form>
-<a href="{% url 'login' %}">Já tenho conta</a>
+
+        <a href="{% url 'login' %}" class="d-block mt-2">Já tenho conta</a>
+
+    </main>
+</div>
 {% endblock %}

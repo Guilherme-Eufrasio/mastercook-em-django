@@ -8,6 +8,52 @@
 {% block 'conteudo'%} 
 
 <h1 class="titulos_segundaspaginas">TODAS AS RECEITAS SIMPLES</h1>
+
+<div class="container mb-4">
+
+    <form method="get" class="row g-3 justify-content-center align-items-center">
+
+        <!-- Campo de pesquisa -->
+        <div class="col-md-5">
+            <input type="text"
+                   name="q"
+                   class="form-control form-control-lg"
+                   placeholder="Pesquisar receita ou mestre..."
+                   value="{{ termo }}">
+        </div>
+
+        <!-- Filtro de categoria -->
+        <div class="col-md-3 text-center">
+
+            <div class="btn-group w-100" role="group">
+                
+                <button type="submit" name="categoria" value="" 
+                    class="btn btn-outline-secondary {% if categoria == '' %}active{% endif %}">
+                    Todos
+                </button>
+
+                <button type="submit" name="categoria" value="Salgado" 
+                    class="btn btn-outline-primary {% if categoria == 'Salgado' %}active{% endif %}">
+                    Salgado
+                </button>
+
+                <button type="submit" name="categoria" value="Doce" 
+                    class="btn btn-outline-primary {% if categoria == 'Doce' %}active{% endif %}">
+                    Doce
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Botão de pesquisa -->
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary btn-lg w-100">Buscar</button>
+        </div>
+    </form>
+
+</div>
+
+
 <div class="galeria" id="galeria_simples">
 {% for receita in receitas_simples %}
   <a title="{{receita.nome_prato}} do mestre {{receita.mestre.username}}" onclick="exibirReceita('{{receita.id}}', '{{receita.mestre.username}}')">

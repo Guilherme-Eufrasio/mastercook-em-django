@@ -2,6 +2,10 @@
     font-family: chalet;
     src: url(../fontes/ChaletComprime\ CologneSixty.ttf);
 }
+*{
+    margin: 0;
+    padding: 0;
+}
 .menu-container{
     background:linear-gradient(to right,#4069F8,#002462) ;
     display: flex;
@@ -29,7 +33,9 @@
 .menu-container ul.menu li a {
     text-decoration: none;
     color: #fff;
-    font-size: 26pt;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: .5px;
 }
 
 
@@ -317,12 +323,65 @@ form{
     gap: 20px; 
 
 }
-.galeria{
+/* Correção da galeria de receitas populares */
+#galeria_populares {
     display: flex;
     flex-wrap: wrap;
-    gap: 25px;
-    margin: 20px;
+    justify-content: center;   /* CENTRALIZA */
+    gap: 30px;                 /* ESPAÇAMENTO BONITO */
+    padding: 20px;
 }
+
+#galeria_populares .item {
+    width: 300px !important;   /* TAMANHO PADRÃO BONITO */
+    border-radius: 12px;
+    transition: transform .3s;
+}
+
+#galeria_populares .item:hover {
+    transform: scale(1.03);
+}
+
+#galeria_populares img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+}
+/* Ajuste fino dos cards populares */
+#galeria_populares .card {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+/* Espaçamento interno e alinhamento */
+#galeria_populares .card .info {
+    padding: 15px 18px; /* <-- Espaçamento bonito */
+}
+
+/* Títulos e textos mais organizados */
+#galeria_populares .card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+#galeria_populares .card h6 {
+    margin-bottom: 12px;
+    color: #555;
+}
+
+/* Espaço entre os badges */
+#galeria_populares .card p span {
+    margin-right: 6px;
+}
+
+/* Efeito hover suave */
+#galeria_populares .card:hover {
+    transform: scale(1.03);
+    transition: .25s;
+}
+
 @media only screen and (max-width:576px){
     .menu {
         display: none;
@@ -360,4 +419,76 @@ form{
     #menu-mobile{
         display: none;
     }    
+}
+
+
+
+/* Cabeçalho da home */
+.cabecalho-banner img.fundo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0 0 12px 12px;
+}
+
+
+
+
+/* Container geral da página Sobre */
+.sobre-container {
+    max-width: 850px;
+}
+
+/* Título principal */
+.sobre-titulo {
+    font-family: chalet;
+    font-size: 2.4rem;
+    color: #002462;
+    font-weight: 700;
+}
+
+/* Texto de descrição */
+.sobre-texto {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #333;
+    max-width: 700px;
+}
+
+/* Subtítulo */
+.sobre-subtitulo {
+    font-family: chalet;
+    color: #002462;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Criadores */
+.criadores {
+    margin-top: 20px;
+}
+
+.criador-item {
+    text-align: center;
+    transition: transform .3s ease;
+}
+
+.criador-item:hover {
+    transform: scale(1.05);
+}
+
+.criador-foto {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 3px solid #ffae00;
+}
+
+.criador-nome {
+    font-family: chalet;
+    font-weight: 600;
+    color: #002462;
+    font-size: 1.2rem;
 }

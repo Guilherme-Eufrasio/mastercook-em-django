@@ -1,17 +1,37 @@
 {% extends "base.html" %}
 {% load static %}
-{% block 'title'%} Sobre {% endblock %}
-{% block 'head' %}
-{% endblock %}
+{% block 'title' %} Sobre {% endblock %}
 
-{% block 'conteudo'%}
-<h1 class="sobre">SOBRE O PROJETO</h1>
+{% block 'conteudo' %}
 
-    <p class="projeto">Esse projeto é do nosso curso. Onde consiste em fazer um site de receitas onde o usuário pode postar as próprias receitas.</p>
-    <h2 class="texto">CRIADORES:</h2>
-    <div class="criadores">
-        <a href="https://github.com/Guilherme-Eufrasio"><img src="{% static 'img/guizao.jpeg' %}" alt="foto criador guizão"></a>
-        <a href="https://github.com/nicolas2349"><img src="{% static 'img/nicao.jpeg' %}" alt="foto criador nicolas"></a>
+<section class="sobre-container container py-5">
+
+    <h1 class="sobre-titulo text-center mb-4">Sobre o Projeto</h1>
+
+    <p class="sobre-texto text-center mx-auto mb-5">
+        Este projeto foi desenvolvido como parte do nosso curso, com o objetivo de criar
+        uma plataforma onde usuários possam compartilhar suas próprias receitas de forma prática,
+        organizada e interativa.
+    </p>
+
+    <h2 class="sobre-subtitulo text-center mb-4">Criadores</h2>
+
+    <div class="criadores d-flex justify-content-center gap-4 flex-wrap">
+
+        <a href="https://github.com/Guilherme-Eufrasio" target="_blank" class="criador-item text-decoration-none">
+            <img src="{% static 'img/guizao.jpeg' %}" alt="Criador: Guilherme"
+                 class="criador-foto">
+            <p class="criador-nome mt-2">Guilherme</p>
+        </a>
+
+        <a href="https://github.com/nicolas2349" target="_blank" class="criador-item text-decoration-none">
+            <img src="{% static 'img/nicao.jpeg' %}" alt="Criador: Nicolas"
+                 class="criador-foto">
+            <p class="criador-nome mt-2">Nicolas</p>
+        </a>
+
     </div>
+
+</section>
 
 {% endblock %}
